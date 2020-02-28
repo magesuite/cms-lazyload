@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="web" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="image_urls_processing" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Image URLs processing</label>
+                <field id="lazy_load_images_in_cms_blocks" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Lazy load images in CMS blocks</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>After enabling all img tags used in CMS Blocks content will be automatically converted to use lazy loading.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
