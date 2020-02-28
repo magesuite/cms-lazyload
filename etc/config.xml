@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <web>
+            <image_urls_processing>
+                <lazy_load_images_in_cms_blocks>1</lazy_load_images_in_cms_blocks>
+            </image_urls_processing>
+        </web>
+    </default>
+</config>
