@@ -38,7 +38,7 @@ class InjectDataSrcTagIntoImages
 
         try {
             $dom = new \DomDocument();
-            $dom->loadHTML('<html>' . $result . '</html>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML(mb_convert_encoding('<html>' . $result . '</html>','HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         } catch (\Exception $e) {
             $this->logger->warning('Issue when adjusting CMS block images to be lazy loaded. Provided HTML code is incorrect, base64 of HTML: ' . base64_encode($result));
 
