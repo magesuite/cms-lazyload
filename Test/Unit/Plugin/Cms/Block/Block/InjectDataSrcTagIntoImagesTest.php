@@ -118,6 +118,10 @@ class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
                 '<img data-src="image.jpg" class="lazyload">',
                 '<img data-src="image.jpg" class="lazyload">'
             ],
+            [
+                '<p>Umlaut test:Sofortüberweisung</p>',
+                '<p>Umlaut test:Sofort&uuml;berweisung</p>'
+            ]
         ];
     }
 }
