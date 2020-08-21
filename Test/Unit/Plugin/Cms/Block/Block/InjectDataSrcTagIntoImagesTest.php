@@ -29,7 +29,7 @@ class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
      */
     protected $loggerDummy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
