@@ -5,6 +5,7 @@ namespace MageSuite\CmsLazyload\Helper;
 class Configuration
 {
     const ENABLED_XML_PATH = 'web/image_urls_processing/lazy_load_images_in_cms_blocks';
+    const LOGGER_ENABLED_XML_PATH = 'web/image_urls_processing/lazy_load_images_in_cms_blocks_logger_enabled';
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
@@ -16,7 +17,13 @@ class Configuration
         $this->scopeConfig = $scopeConfig;
     }
 
-    public function isEnabled() {
+    public function isEnabled()
+    {
         return $this->scopeConfig->getValue(self::ENABLED_XML_PATH);
+    }
+
+    public function isLoggerEnabled()
+    {
+        return $this->scopeConfig->isSetFlag(self::LOGGER_ENABLED_XML_PATH);
     }
 }
