@@ -4,6 +4,7 @@
         <web>
             <image_urls_processing>
                 <lazy_load_images_in_cms_blocks>1</lazy_load_images_in_cms_blocks>
+                <lazy_load_images_in_cms_blocks_logger_enabled>1</lazy_load_images_in_cms_blocks_logger_enabled>
             </image_urls_processing>
         </web>
     </default>

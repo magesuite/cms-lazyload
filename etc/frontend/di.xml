@@ -4,4 +4,17 @@
         <plugin name="inject_data_src_tag_into_images"
                 type="MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectDataSrcTagIntoImages" />
     </type>
+    <type name="MageSuite\CmsLazyload\Logger\Logger\InvalidBlockLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">invalid_block_logger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="warning" xsi:type="object">MageSuite\CmsLazyload\Logger\Handler\InvalidBlockHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectDataSrcTagIntoImages">
+        <arguments>
+            <argument name="logger" xsi:type="object">MageSuite\CmsLazyload\Logger\Logger\InvalidBlockLogger</argument>
+        </arguments>
+    </type>
 </config>
