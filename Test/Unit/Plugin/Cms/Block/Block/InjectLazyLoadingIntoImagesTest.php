@@ -2,7 +2,7 @@
 
 namespace MageSuite\CmsLazyload\Test\Unit\Plugin\Cms\Block\Block;
 
-class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
+class InjectLazyLoadingIntoImagesTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Magento\TestFramework\ObjectManager
@@ -10,7 +10,7 @@ class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
     protected $objectManager;
 
     /**
-     * @var \MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectDataSrcTagIntoImages
+     * @var \MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectLazyLoadingIntoImages
      */
     protected $injecter;
 
@@ -45,13 +45,13 @@ class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->injecter = new \MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectDataSrcTagIntoImages($this->configuration, $this->loggerDummy);
+        $this->injecter = new \MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectLazyLoadingIntoImages($this->configuration, $this->loggerDummy);
     }
 
     /**
-     * @dataProvider blockContents
+     * @dataProvider blockContents 
      */
-    public function testItReplacesSrcArgumentsWithDataSrcOnes($originalHtml, $expectedHtml)
+    public function testItAddsLazyLoadingAttribute($originalHtml, $expectedHtml)
     {
         $this->configuration->method('isEnabled')
             ->willReturn(true);
@@ -76,35 +76,39 @@ class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
         return [
             [
                 '<img src="image.jpg">',
-                '<img src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class=" lazyload">'
+                '<img src="image.jpg" loading="lazy">'
             ],
             [
                 '<IMG src="image.jpg">',
-                '<img src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class=" lazyload">'
+                '<img src="image.jpg" loading="lazy">'
             ],
             [
                 '<IMG src="image.jpg"/>',
-                '<img src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class=" lazyload">'
+                '<img src="image.jpg" loading="lazy">'
             ],
             [
                 '<img alt="Preis sieger" src="https://www.example.com/image.jpg">',
-                '<img alt="Preis sieger" src="https://www.example.com/image.jpg" data-srcset="https://www.example.com/image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class=" lazyload">'
+                '<img alt="Preis sieger" src="https://www.example.com/image.jpg" loading="lazy">'
             ],
             [
                 '<img class="test" alt="Preis sieger" src="/image.jpg">',
-                '<img class="test lazyload" alt="Preis sieger" src="/image.jpg" data-srcset="/image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">'
+                '<img class="test" alt="Preis sieger" src="/image.jpg" loading="lazy">'
             ],
             [
                 '<img alt="Preis sieger" src="image.jpg"/>',
-                '<img alt="Preis sieger" src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class=" lazyload">'
-            ],
-            [
-                '<img alt="Preis sieger" src="image.jpg"/>',
-                '<img alt="Preis sieger" src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" class=" lazyload">'
+                '<img alt="Preis sieger" src="image.jpg" loading="lazy">'
             ],
             [
                 '<img class="" src="image.jpg">',
-                '<img class=" lazyload" src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">'
+                '<img class="" src="image.jpg" loading="lazy">'
+            ],
+            [
+                '<img class="" src="image.jpg" loading="eager">',
+                '<img class="" src="image.jpg" loading="eager">'
+            ],
+            [
+                '<img class="" src="image.jpg" loading="lazy">',
+                '<img class="" src="image.jpg" loading="lazy">'
             ],
             [
                 '<img data-srcset="image.jpg" class="lazyload">',
@@ -112,11 +116,7 @@ class InjectDataSrcTagIntoImagesTest extends \PHPUnit\Framework\TestCase
             ],
             [
                 '<img class="" src="image.jpg"> <img class="" src="second.jpg">',
-                '<img class=" lazyload" src="image.jpg" data-srcset="image.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="> <img class=" lazyload" src="second.jpg" data-srcset="second.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">'
-            ],
-            [
-                '<img data-src="image.jpg" class="lazyload">',
-                '<img data-src="image.jpg" class="lazyload">'
+                '<img class="" src="image.jpg" loading="lazy"> <img class="" src="second.jpg" loading="lazy">'
             ],
             [
                 '<p>Umlaut test:Sofortüberweisung</p>',

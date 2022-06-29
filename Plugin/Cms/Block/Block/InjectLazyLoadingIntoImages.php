@@ -2,11 +2,8 @@
 
 namespace MageSuite\CmsLazyload\Plugin\Cms\Block\Block;
 
-class InjectDataSrcTagIntoImages
+class InjectLazyLoadingIntoImages
 {
-    const LAZYLOAD_CSS_CLASS = 'lazyload';
-    const SRCSET_PLACEHOLDER = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-
     /**
      * @var \MageSuite\CmsLazyload\Helper\Configuration
      */
@@ -62,21 +59,14 @@ class InjectDataSrcTagIntoImages
                 continue;
             }
 
-            $dataSrc = $image->getAttribute('data-src');
+            $loadingAttribute = $image->getAttribute('loading');
 
-            if (!empty($dataSrc)) {
+            if (!empty($loadingAttribute)) {
                 continue;
             }
 
-            $dataSrcSet = $image->getAttribute('data-srcset');
 
-            if (!empty($dataSrcSet)) {
-                continue;
-            }
-
-            $image->setAttribute('data-srcset', $src);
-            $image->setAttribute('srcset', self::SRCSET_PLACEHOLDER);
-            $image->setAttribute('class', $image->getAttribute('class') . ' ' . self::LAZYLOAD_CSS_CLASS);
+            $image->setAttribute('loading', 'lazy');
         }
 
         $newHtml = $dom->saveHTML();
