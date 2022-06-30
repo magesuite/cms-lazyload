@@ -47,7 +47,6 @@ class InjectLazyLoadingIntoImages
         }
 
         $dom->formatOutput = false;
-
         $images = $dom->getElementsByTagName('img');
 
         /** @var \DOMElement $image */
