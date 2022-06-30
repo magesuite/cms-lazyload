@@ -17,8 +17,7 @@ class InjectLazyLoadingIntoImages
     public function __construct(
         \MageSuite\CmsLazyload\Helper\Configuration $configuration,
         \Psr\Log\LoggerInterface $logger
-    )
-    {
+    ) {
         $this->configuration = $configuration;
         $this->logger = $logger;
     }
@@ -35,7 +34,7 @@ class InjectLazyLoadingIntoImages
 
         try {
             $dom = new \DomDocument();
-            $dom->loadHTML(mb_convert_encoding('<html>' . $result . '</html>','HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML(mb_convert_encoding('<html>' . $result . '</html>', 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         } catch (\Exception $e) {
 
             if ($this->configuration->isLoggerEnabled()) {
@@ -64,7 +63,6 @@ class InjectLazyLoadingIntoImages
             if (!empty($loadingAttribute)) {
                 continue;
             }
-
 
             $image->setAttribute('loading', 'lazy');
         }
