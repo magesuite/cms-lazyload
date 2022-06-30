@@ -49,7 +49,7 @@ class InjectLazyLoadingIntoImagesTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider blockContents 
+     * @dataProvider blockContents
      */
     public function testItAddsLazyLoadingAttribute($originalHtml, $expectedHtml)
     {
