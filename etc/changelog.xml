@@ -1,0 +1,13 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:MageSuite_Changelog:etc/changelog.xsd">
+    <module id="MageSuite_CmsLazyload" name="MageSuite_CmsLazyload">
+        <changelog>
+            <tag version="1.1.0" date="2022-06-30">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>Refactor module to use native lazy loading attribute</overview>
+                    <description>Introduce loading="lazy" attribute instead of script lazy loading</description>
+                </entry>
+            </tag>
+        </changelog>
+    </module>
+</config>
