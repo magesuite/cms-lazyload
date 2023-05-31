@@ -34,7 +34,7 @@ class InjectLazyLoadingIntoImages
 
         try {
             $dom = new \DomDocument();
-            $dom->loadHTML(mb_convert_encoding('<html>' . $result . '</html>', 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML(mb_encode_numericentity('<html>' . $result . '</html>', [0x80, 0x10FFFF, 0, ~0], 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         } catch (\Exception $e) {
 
             if ($this->configuration->isLoggerEnabled()) {
