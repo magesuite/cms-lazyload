@@ -121,7 +121,15 @@ class InjectLazyLoadingIntoImagesTest extends \PHPUnit\Framework\TestCase
             [
                 '<p>Umlaut test:Sofortüberweisung</p>',
                 '<p>Umlaut test:Sofort&uuml;berweisung</p>'
-            ]
+            ],
+            [
+                '<img alt="Preis sieger" src="image.jpg"/><span>&</span>',
+                '<img alt="Preis sieger" src="image.jpg" loading="lazy"><span>&#65286;</span>'
+            ],
+            [
+                '<img alt="Preis" src="image.jpg"/><span>&</span><p>Sofortüberweisung</p>',
+                '<img alt="Preis" src="image.jpg" loading="lazy"><span>&#65286;</span><p>Sofort&uuml;berweisung</p>'
+            ],
         ];
     }
 }
