@@ -34,8 +34,7 @@ class InjectLazyLoadingIntoImages
 
         try {
             $dom = new \DomDocument();
-            $html = str_replace('&', '＆', $result); // unicode ampersand
-            $dom->loadHTML(mb_encode_numericentity('<html>' . $html . '</html>', [0x80, 0x10FFFF, 0, ~0], 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML(mb_encode_numericentity('<html>' . $result . '</html>', [0x80, 0x10FFFF, 0, ~0], 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         } catch (\Exception $e) {
 
             if ($this->configuration->isLoggerEnabled()) {
