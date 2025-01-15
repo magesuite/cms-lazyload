@@ -39,7 +39,9 @@ class InjectLazyLoadingIntoImages
 
             if ($this->configuration->isLoggerEnabled()) {
                 $this->logger->warning(
-                    sprintf('Issue when adjusting CMS block images to be lazy loaded. Provided HTML code is incorrect, base64 of HTML: %s', base64_encode($result))
+                    'Issue when adjusting CMS block images to be lazy loaded.' . PHP_EOL .
+                    'Base64 of HTML: ' . base64_encode($result) . PHP_EOL .
+                    'Block ID: ' . ($subject->getBlockId() ?? 'unknown') . PHP_EOL
                 );
             }
 
