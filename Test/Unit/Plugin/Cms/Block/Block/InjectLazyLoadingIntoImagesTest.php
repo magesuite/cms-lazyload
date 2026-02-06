@@ -71,7 +71,7 @@ class InjectLazyLoadingIntoImagesTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('<img src="image.jpg" />', $resultHtml);
     }
 
-    public static function blockContents()
+    public static function blockContents(): array
     {
         return [
             [
