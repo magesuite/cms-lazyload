@@ -48,9 +48,7 @@ class InjectLazyLoadingIntoImagesTest extends \PHPUnit\Framework\TestCase
         $this->injecter = new \MageSuite\CmsLazyload\Plugin\Cms\Block\Block\InjectLazyLoadingIntoImages($this->configuration, $this->loggerDummy);
     }
 
-    /**
-     * @dataProvider blockContents
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('blockContents')]
     public function testItAddsLazyLoadingAttribute($originalHtml, $expectedHtml)
     {
         $this->configuration->method('isEnabled')
